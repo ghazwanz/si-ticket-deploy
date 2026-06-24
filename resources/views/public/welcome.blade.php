@@ -136,7 +136,7 @@
                            class="group relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 flex flex-col justify-end transition-all duration-300 hover:-translate-y-1 opacity-0 blur-sm translate-y-6 scale-[0.98] {{ $color['glow'] }} {{ $isLarge ? 'sm:col-span-4 col-span-2 min-h-80' : 'col-span-2 min-h-80' }}"
                            data-reveal
                            data-reveal-delay="{{ $loop->index * 70 + 120 }}">
-                            <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" class="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-500 group-hover:scale-110 group-hover:opacity-95">
+                            <img src="{{ ($category->image && file_exists(public_path('storage/' . $category->image))) ? asset('storage/' . $category->image) : Storage::disk('public')->url($category->image) }}" alt="{{ $category->name }}" class="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-500 group-hover:scale-110 group-hover:opacity-95">
                             <div class="absolute inset-0 bg-gradient-to-t {{ $color['gradient'] }}"></div>
                             <h3 class="relative z-10 font-extrabold tracking-tight text-white transition-transform duration-300 group-hover:translate-y-0 translate-y-0.5 {{ $isLarge ? 'text-lg sm:text-2xl p-8' : 'text-sm sm:text-base p-5' }}">{{ $category->name }}</h3>
                         </a>

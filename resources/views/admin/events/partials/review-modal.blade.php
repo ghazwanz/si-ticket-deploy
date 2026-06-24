@@ -55,7 +55,7 @@
             </div>
             <div class="aspect-video rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative group">
                 @if($event->banner_image)
-                    <img src="{{ asset('storage/' . $event->banner_image) }}" class="w-full h-full object-cover">
+                    <img src="{{ ($event->banner_image && file_exists(public_path('storage/' . $event->banner_image))) ? asset('storage/' . $event->banner_image) : Storage::disk('public')->url($event->banner_image) }}" class="w-full h-full object-cover">
                 @else
                     <div class="w-full h-full flex items-center justify-center text-slate-300">
                         <x-heroicon-o-photo class="w-16 h-16" />

@@ -83,7 +83,7 @@
             <div class="flex flex-col lg:flex-row gap-10 relative">
                 <div class="w-full lg:w-[400px] aspect-video lg:aspect-square rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-900 shrink-0 shadow-2xl shadow-violet-500/10">
                     @if($event->banner_image)
-                        <img src="{{ asset('storage/' . $event->banner_image) }}" class="w-full h-full object-cover">
+                        <img src="{{ ($event->banner_image && file_exists(public_path('storage/' . $event->banner_image))) ? asset('storage/' . $event->banner_image) : Storage::disk('public')->url($event->banner_image) }}" class="w-full h-full object-cover">
                     @else
                         <div class="w-full h-full flex items-center justify-center text-slate-300">
                             <x-heroicon-o-photo class="w-20 h-20" />

@@ -129,7 +129,7 @@
                                 </td>
                                 <td class="px-8 py-5">
                                     @if($user->organizerProfile?->legality_document)
-                                        <a href="{{ asset('storage/' . $user->organizerProfile->legality_document) }}" target="_blank"
+                                        <a href="{{ ($user->organizerProfile->legality_document && file_exists(public_path('storage/' . $user->organizerProfile->legality_document))) ? asset('storage/' . $user->organizerProfile->legality_document) : Storage::url($user->organizerProfile->legality_document) }}" target="_blank"
                                            class="inline-flex items-center gap-1.5 px-3 py-1 bg-violet-500/10 hover:bg-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-bold uppercase tracking-wider rounded-xl border border-violet-500/20 transition-colors">
                                             <x-heroicon-o-document-text class="w-4 h-4" />
                                             Lihat Dokumen
