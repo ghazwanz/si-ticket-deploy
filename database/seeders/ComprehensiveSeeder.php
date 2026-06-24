@@ -46,6 +46,7 @@ class ComprehensiveSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => UserRole::Admin,
                 'is_active' => true,
+                'email_verified_at' => now(),
             ]
         );
 
